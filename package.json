@@ -1,0 +1,14 @@
+{
+  "name": "real-estate-app",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager":"pnpm@10.21.0",
+
+  "scripts": {
+    "dev:server": "pnpm -C server dev",
+    "dev:client": "pnpm -C client dev",
+    "build": "pnpm -C client build && pnpm -C server build",
+    "lint": "echo \"(add later)\"",
+    "test": "echo \"(add later)\""
+  }
+}
