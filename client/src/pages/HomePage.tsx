@@ -1,13 +1,12 @@
 import { useState } from "react";
+import SearchBar from "../components/SearchBar";
 
 export default function HomePage() {
-  const [activeTab, setActiveTab] = useState<"acheter" | "louer" | "estimer">(
-    "acheter"
-  );
+  const [activeTab, setActiveTab] = useState<"acheter" | "louer">("acheter");
 
   return (
     <div className="relative min-h-screen w-full font-sans text-white overflow-hidden">
-      {/* --- Blurred background image layer (reliable full-page blur) --- */}
+      {/* Background */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat filter blur-[12px] scale-[1.03]"
@@ -16,12 +15,10 @@ export default function HomePage() {
             "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80')",
         }}
       />
-      {/* Dark overlay to improve contrast */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-black/40" />
 
       {/* Content */}
       <div className="relative z-10">
-        {/* HERO */}
         <section className="flex flex-col items-center text-center pt-40 pb-20 px-4">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-extrabold leading-tight drop-shadow-xl">
@@ -38,10 +35,10 @@ export default function HomePage() {
 
           {/* SEARCH BOX */}
           <div className="relative mt-14 w-full max-w-5xl">
-            <div className="bg-white/95 backdrop-blur-lg shadow-2xl rounded-3xl overflow-hidden">
+            <div className="relative z-20 bg-white/95 backdrop-blur-lg shadow-2xl rounded-3xl">
               {/* Tabs */}
               <div className="flex justify-around border-b border-gray-200">
-                {(["acheter", "louer", "estimer"] as const).map((tab) => (
+                {(["acheter", "louer"] as const).map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -57,41 +54,9 @@ export default function HomePage() {
                 ))}
               </div>
 
-              {/* Inputs */}
-              <div className="p-6 grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-                {activeTab !== "estimer" ? (
-                  <>
-                    <input
-                      type="text"
-                      placeholder="Type de bien"
-                      className="border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#002B5B]"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Localité"
-                      className="border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#002B5B]"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Budget Max (TND)"
-                      className="border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#002B5B]"
-                    />
-                    <button className="bg-[#002B5B] text-white font-semibold py-3 rounded-lg hover:bg-[#003973] transition">
-                      Rechercher
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <input
-                      type="text"
-                      placeholder="Adresse du bien à estimer"
-                      className="md:col-span-3 border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#002B5B]"
-                    />
-                    <button className="bg-[#002B5B] text-white font-semibold py-3 rounded-lg hover:bg-[#003973] transition">
-                      Estimer
-                    </button>
-                  </>
-                )}
+              <div className="p-6">
+                {/* Pass the active tab so SearchBar picks the right budget scale */}
+                <SearchBar mode={activeTab} />
               </div>
             </div>
           </div>
@@ -100,3 +65,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+
