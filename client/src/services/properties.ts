@@ -2,31 +2,36 @@
 import { api } from "./api";
 
 export type Property = {
-  id: string;                 // string PK in your current schema
+  id: string;
   title: string;
-  description?: string | null;
-  price: number;
   city: string;
-  type: "VILLA" | "APARTMENT" | "LAND" | string;
-  createdAt?: string;
-  updatedAt?: string;
-  // If you later add images relation:
-  images?: Array<{ id?: string; url: string }>;
+  type: string; // enum name from server (e.g., "VILLA", "APARTMENT")
+  price: number;
+  description: string;
+  images?: { id?: string; url: string }[];
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type ListFilters = {
   city?: string;
-  type?: string;        // "VILLA" | "APARTMENT" | "LAND"
+  type?: string;
   minPrice?: number;
   maxPrice?: number;
 };
 
-export async function listProperties(filters: ListFilters = {}): Promise<Property[]> {
-  const { data } = await api.get<Property[]>("/api/properties", { params: filters });
+export async function listProperties(filters: ListFilters = {}) {
+  const params = new URLSearchParams();
+  if (filters.city) params.set("city", filters.city);
+  if (filters.type) params.set("type", filters.type);
+  if (typeof filters.minPrice === "number") params.set("minPrice", String(filters.minPrice));
+  if (typeof filters.maxPrice === "number") params.set("maxPrice", String(filters.maxPrice));
+
+  const { data } = await api.get<Property[]>(`/api/properties?${params.toString()}`);
   return data;
 }
 
-export async function getProperty(id: string): Promise<Property> {
+export async function getProperty(id: string) {
   const { data } = await api.get<Property>(`/api/properties/${id}`);
   return data;
 }
