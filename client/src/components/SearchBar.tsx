@@ -1,6 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ALL_GOUVERNORATS, TN_LOCATIONS } from "../data/tnLocations";
+import {
+  GOVS as ALL_GOUVERNORATS,
+  DELEGATIONS as TN_LOCATIONS,
+} from "../data/tnLocations";
 
 type Mode = "acheter" | "louer";
 type Props = { mode?: Mode }; // default "acheter"
