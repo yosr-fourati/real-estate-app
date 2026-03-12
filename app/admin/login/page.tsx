@@ -46,8 +46,8 @@ export default function AdminLoginPage() {
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Lock className="w-8 h-8 text-orange-500" />
+          <div className="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Lock className="w-8 h-8 text-brand-500" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Administration</h1>
           <p className="text-gray-500 mt-1 text-sm">Indeed Immobilier</p>
@@ -89,7 +89,7 @@ export default function AdminLoginPage() {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+            className="w-full bg-brand-500 hover:bg-brand-600 text-white"
           >
             {isSubmitting ? (
               <>

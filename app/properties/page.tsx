@@ -100,7 +100,7 @@ export default async function PropertiesPage({
             <Suspense
               fallback={
                 <div className="flex justify-center py-20">
-                  <Loader2 className="w-8 h-8 animate-spin text-orange-500" />
+                  <Loader2 className="w-8 h-8 animate-spin text-brand-500" />
                 </div>
               }
             >
@@ -129,8 +129,8 @@ export default async function PropertiesPage({
                           })}`}
                           className={`w-10 h-10 rounded-lg flex items-center justify-center text-sm font-medium transition-colors ${
                             p === page
-                              ? "bg-orange-500 text-white"
-                              : "bg-white text-gray-700 hover:bg-orange-50 border border-gray-200"
+                              ? "bg-brand-500 text-white"
+                              : "bg-white text-gray-700 hover:bg-brand-50 border border-gray-200"
                           }`}
                         >
                           {p}

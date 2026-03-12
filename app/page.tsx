@@ -32,7 +32,7 @@ export default async function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-orange-900" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-brand-900" />
         <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{
@@ -41,12 +41,12 @@ export default async function HomePage() {
           }}
         />
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <p className="text-orange-400 font-semibold mb-3 tracking-wider uppercase text-sm">
+          <p className="text-brand-400 font-semibold mb-3 tracking-wider uppercase text-sm">
             Agence Immobilière de Confiance
           </p>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             Trouvez votre bien
-            <span className="text-orange-500"> idéal</span>
+            <span className="text-brand-500"> idéal</span>
             <br />en Tunisie
           </h1>
           <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
@@ -57,19 +57,19 @@ export default async function HomePage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-orange-500 text-white py-6">
+      <section className="bg-brand-500 text-white py-6">
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-3 gap-4 text-center">
           <div>
             <p className="text-3xl font-bold">{stats.total}+</p>
-            <p className="text-orange-100 text-sm">Biens disponibles</p>
+            <p className="text-brand-100 text-sm">Biens disponibles</p>
           </div>
           <div>
             <p className="text-3xl font-bold">{stats.forSale}+</p>
-            <p className="text-orange-100 text-sm">À vendre</p>
+            <p className="text-brand-100 text-sm">À vendre</p>
           </div>
           <div>
             <p className="text-3xl font-bold">{stats.forRent}+</p>
-            <p className="text-orange-100 text-sm">À louer</p>
+            <p className="text-brand-100 text-sm">À louer</p>
           </div>
         </div>
       </section>
@@ -91,10 +91,10 @@ export default async function HomePage() {
               <Link
                 key={type}
                 href={`/properties?type=${type}`}
-                className="group bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:border-orange-500 border-2 border-transparent transition-all"
+                className="group bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:border-brand-500 border-2 border-transparent transition-all"
               >
-                <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-500 transition-colors">
-                  <Icon className="w-7 h-7 text-orange-500 group-hover:text-white transition-colors" />
+                <div className="w-14 h-14 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-brand-500 transition-colors">
+                  <Icon className="w-7 h-7 text-brand-500 group-hover:text-white transition-colors" />
                 </div>
                 <p className="font-semibold text-gray-800">{label}</p>
               </Link>
@@ -113,7 +113,7 @@ export default async function HomePage() {
                 <p className="text-gray-500 mt-1">Nos dernières annonces</p>
               </div>
               <Link href="/properties">
-                <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+                <Button variant="outline" className="border-brand-500 text-brand-500 hover:bg-brand-50">
                   Voir tout
                 </Button>
               </Link>
@@ -146,7 +146,7 @@ export default async function HomePage() {
             </a>
             <a
               href={`tel:+${whatsapp}`}
-              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-colors"
+              className="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-8 py-3 rounded-full font-semibold transition-colors"
             >
               <Phone className="w-5 h-5" />
               Appeler maintenant

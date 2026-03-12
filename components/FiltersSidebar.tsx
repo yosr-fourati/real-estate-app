@@ -53,12 +53,12 @@ export default function FiltersSidebar({ currentParams }: Props) {
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-5 sticky top-24">
       <div className="flex items-center justify-between">
         <h2 className="font-bold text-gray-900 flex items-center gap-2">
-          <SlidersHorizontal className="w-4 h-4 text-orange-500" />
+          <SlidersHorizontal className="w-4 h-4 text-brand-500" />
           Filtres
         </h2>
         <button
           onClick={reset}
-          className="text-xs text-gray-400 hover:text-orange-500 flex items-center gap-1 transition-colors"
+          className="text-xs text-gray-400 hover:text-brand-500 flex items-center gap-1 transition-colors"
         >
           <RotateCcw className="w-3 h-3" />
           Réinitialiser
@@ -73,7 +73,7 @@ export default function FiltersSidebar({ currentParams }: Props) {
         <select
           value={currentParams.listingType ?? ""}
           onChange={(e) => update("listingType", e.target.value)}
-          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-orange-400"
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-brand-400"
         >
           <option value="">Toutes</option>
           <option value="SALE">À Vendre</option>
@@ -89,7 +89,7 @@ export default function FiltersSidebar({ currentParams }: Props) {
         <select
           value={currentParams.type ?? ""}
           onChange={(e) => update("type", e.target.value)}
-          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-orange-400"
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-brand-400"
         >
           {PROPERTY_TYPES.map((t) => (
             <option key={t.value} value={t.value}>
@@ -110,7 +110,7 @@ export default function FiltersSidebar({ currentParams }: Props) {
             update("governorate", e.target.value);
             update("city", "");
           }}
-          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-orange-400"
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-brand-400"
         >
           <option value="">Tous</option>
           {GOVS.map((g) => (
@@ -130,7 +130,7 @@ export default function FiltersSidebar({ currentParams }: Props) {
           <select
             value={currentParams.city ?? ""}
             onChange={(e) => update("city", e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-orange-400"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-brand-400"
           >
             <option value="">Toutes</option>
             {delegations.map((d) => (
@@ -153,14 +153,14 @@ export default function FiltersSidebar({ currentParams }: Props) {
             placeholder="Min"
             value={currentParams.minPrice ?? ""}
             onChange={(e) => update("minPrice", e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-orange-400"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-brand-400"
           />
           <input
             type="number"
             placeholder="Max"
             value={currentParams.maxPrice ?? ""}
             onChange={(e) => update("maxPrice", e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-orange-400"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-brand-400"
           />
         </div>
       </div>
@@ -173,7 +173,7 @@ export default function FiltersSidebar({ currentParams }: Props) {
         <select
           value={currentParams.sort ?? "newest"}
           onChange={(e) => update("sort", e.target.value)}
-          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-orange-400"
+          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:border-brand-400"
         >
           {SORT_OPTIONS.map((o) => (
             <option key={o.value} value={o.value}>

@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone, Building2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, Phone } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -39,17 +39,21 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-              <Building2 className="w-5 h-5 text-white" />
-            </div>
-            <span
-              className={`font-bold text-lg ${
-                scrolled || !isHome ? "text-gray-900" : "text-white"
-              }`}
-            >
-              Indeed Immobilier
-            </span>
+          <Link href="/" className="flex items-center">
+            {scrolled || !isHome ? (
+              <Image
+                src="/indeed-logo.png"
+                alt="Indeed Immobilier"
+                width={140}
+                height={44}
+                className="object-contain h-10 w-auto"
+                priority
+              />
+            ) : (
+              <span className="font-bold text-xl text-white drop-shadow-md">
+                Indeed immobilier
+              </span>
+            )}
           </Link>
 
           {/* Desktop nav */}
@@ -60,9 +64,9 @@ export default function Navbar() {
                 href={href}
                 className={`text-sm font-medium transition-colors ${
                   pathname === href
-                    ? "text-orange-500"
+                    ? "text-brand-500"
                     : scrolled || !isHome
-                    ? "text-gray-700 hover:text-orange-500"
+                    ? "text-gray-700 hover:text-brand-500"
                     : "text-white/90 hover:text-white"
                 }`}
               >
@@ -73,7 +77,7 @@ export default function Navbar() {
               href={`https://wa.me/${whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors"
+              className="flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded-full text-sm font-semibold transition-colors"
             >
               <Phone className="w-4 h-4" />
               Nous contacter
@@ -99,7 +103,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className={`block px-4 py-2 text-sm font-medium rounded-lg ${
                   pathname === href
-                    ? "text-orange-500 bg-orange-50"
+                    ? "text-brand-500 bg-brand-50"
                     : "text-gray-700 hover:bg-gray-50"
                 }`}
               >
@@ -111,7 +115,7 @@ export default function Navbar() {
                 href={`https://wa.me/${whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-orange-500 text-white py-2 rounded-full text-sm font-semibold"
+                className="flex items-center justify-center gap-2 bg-brand-500 text-white py-2 rounded-full text-sm font-semibold"
               >
                 <Phone className="w-4 h-4" />
                 Nous contacter

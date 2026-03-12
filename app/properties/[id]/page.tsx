@@ -43,7 +43,7 @@ export default async function PropertyDetailPage({ params }: Props) {
         {/* Back */}
         <Link
           href="/properties"
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-orange-500 mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-brand-500 mb-6 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Retour aux annonces
@@ -68,7 +68,7 @@ export default async function PropertyDetailPage({ params }: Props) {
                 </div>
               )}
               <div className="absolute top-4 left-4 flex gap-2">
-                <Badge className="bg-orange-500 text-white text-sm">
+                <Badge className="bg-brand-500 text-white text-sm">
                   {LISTING_TYPE_LABELS[property.listingType]}
                 </Badge>
                 <Badge variant="secondary" className="text-sm">
@@ -98,7 +98,7 @@ export default async function PropertyDetailPage({ params }: Props) {
                   {property.governorate ? `, ${property.governorate}` : ""}
                 </span>
               </div>
-              <p className="text-3xl font-bold text-orange-500 mt-3">
+              <p className="text-3xl font-bold text-brand-500 mt-3">
                 {formatPrice(property.price, property.listingType)}
               </p>
             </div>
@@ -108,21 +108,21 @@ export default async function PropertyDetailPage({ params }: Props) {
               <div className="flex gap-6 p-4 bg-white rounded-xl border border-gray-100">
                 {property.bedrooms && (
                   <div className="flex items-center gap-2 text-gray-700">
-                    <Bed className="w-5 h-5 text-orange-500" />
+                    <Bed className="w-5 h-5 text-brand-500" />
                     <span className="font-semibold">{property.bedrooms}</span>
                     <span className="text-sm text-gray-500">chambres</span>
                   </div>
                 )}
                 {property.bathrooms && (
                   <div className="flex items-center gap-2 text-gray-700">
-                    <Bath className="w-5 h-5 text-orange-500" />
+                    <Bath className="w-5 h-5 text-brand-500" />
                     <span className="font-semibold">{property.bathrooms}</span>
                     <span className="text-sm text-gray-500">salles de bain</span>
                   </div>
                 )}
                 {property.areaSqm && (
                   <div className="flex items-center gap-2 text-gray-700">
-                    <Maximize2 className="w-5 h-5 text-orange-500" />
+                    <Maximize2 className="w-5 h-5 text-brand-500" />
                     <span className="font-semibold">{property.areaSqm}</span>
                     <span className="text-sm text-gray-500">m²</span>
                   </div>
@@ -176,7 +176,7 @@ export default async function PropertyDetailPage({ params }: Props) {
                 </a>
                 <a
                   href={`tel:+${whatsapp}`}
-                  className="flex items-center justify-center gap-2 border-2 border-orange-500 text-orange-500 hover:bg-orange-50 py-3 px-4 rounded-xl font-semibold transition-colors"
+                  className="flex items-center justify-center gap-2 border-2 border-brand-500 text-brand-500 hover:bg-brand-50 py-3 px-4 rounded-xl font-semibold transition-colors"
                 >
                   <Phone className="w-5 h-5" />
                   Appeler
