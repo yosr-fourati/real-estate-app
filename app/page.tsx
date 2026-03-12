@@ -1,0 +1,159 @@
+import Image from "next/image";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import SearchBar from "@/components/SearchBar";
+import PropertyCard from "@/components/PropertyCard";
+import { Building2, Home, TreePine, TrendingUp, Phone, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+async function getFeaturedProperties() {
+  return prisma.property.findMany({
+    where: { isActive: true },
+    include: { images: { orderBy: { order: "asc" }, take: 1 } },
+    orderBy: { createdAt: "desc" },
+    take: 6,
+  });
+}
+
+async function getStats() {
+  const [total, forSale, forRent] = await Promise.all([
+    prisma.property.count({ where: { isActive: true } }),
+    prisma.property.count({ where: { isActive: true, listingType: "SALE" } }),
+    prisma.property.count({ where: { isActive: true, listingType: "RENT" } }),
+  ]);
+  return { total, forSale, forRent };
+}
+
+export default async function HomePage() {
+  const [properties, stats] = await Promise.all([getFeaturedProperties(), getStats()]);
+  const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "21626454266";
+
+  return (
+    <>
+      {/* Hero Section */}
+      <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-orange-900" />
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-30"
+          style={{
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          <p className="text-orange-400 font-semibold mb-3 tracking-wider uppercase text-sm">
+            Agence Immobilière de Confiance
+          </p>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            Trouvez votre bien
+            <span className="text-orange-500"> idéal</span>
+            <br />en Tunisie
+          </h1>
+          <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+            Vente et location d&apos;appartements, villas, maisons et terrains dans toute la Tunisie.
+          </p>
+          <SearchBar />
+        </div>
+      </section>
+
+      {/* Stats Bar */}
+      <section className="bg-orange-500 text-white py-6">
+        <div className="max-w-6xl mx-auto px-4 grid grid-cols-3 gap-4 text-center">
+          <div>
+            <p className="text-3xl font-bold">{stats.total}+</p>
+            <p className="text-orange-100 text-sm">Biens disponibles</p>
+          </div>
+          <div>
+            <p className="text-3xl font-bold">{stats.forSale}+</p>
+            <p className="text-orange-100 text-sm">À vendre</p>
+          </div>
+          <div>
+            <p className="text-3xl font-bold">{stats.forRent}+</p>
+            <p className="text-orange-100 text-sm">À louer</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-3 text-gray-900">
+            Nos Catégories
+          </h2>
+          <p className="text-gray-500 text-center mb-10">Explorez par type de bien</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { label: "Appartements", icon: Building2, type: "APARTMENT" },
+              { label: "Villas", icon: Home, type: "VILLA" },
+              { label: "Terrains", icon: TreePine, type: "LAND" },
+              { label: "Commerciaux", icon: TrendingUp, type: "COMMERCIAL" },
+            ].map(({ label, icon: Icon, type }) => (
+              <Link
+                key={type}
+                href={`/properties?type=${type}`}
+                className="group bg-white rounded-xl p-6 text-center shadow-sm hover:shadow-md hover:border-orange-500 border-2 border-transparent transition-all"
+              >
+                <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-500 transition-colors">
+                  <Icon className="w-7 h-7 text-orange-500 group-hover:text-white transition-colors" />
+                </div>
+                <p className="font-semibold text-gray-800">{label}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Properties */}
+      {properties.length > 0 && (
+        <section className="py-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="flex items-center justify-between mb-10">
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900">Biens en Vedette</h2>
+                <p className="text-gray-500 mt-1">Nos dernières annonces</p>
+              </div>
+              <Link href="/properties">
+                <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-orange-50">
+                  Voir tout
+                </Button>
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {properties.map((p) => (
+                <PropertyCard key={p.id} property={p} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* CTA Contact */}
+      <section className="py-20 bg-gray-900 text-white">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-4">Vous cherchez un bien spécifique ?</h2>
+          <p className="text-gray-400 mb-8 text-lg">
+            Contactez-nous directement et nous trouverons le bien idéal pour vous.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={`https://wa.me/${whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-full font-semibold transition-colors"
+            >
+              <MessageCircle className="w-5 h-5" />
+              WhatsApp
+            </a>
+            <a
+              href={`tel:+${whatsapp}`}
+              className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold transition-colors"
+            >
+              <Phone className="w-5 h-5" />
+              Appeler maintenant
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
