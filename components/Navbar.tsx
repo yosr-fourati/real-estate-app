@@ -37,16 +37,16 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
             {scrolled || !isHome ? (
               <Image
                 src="/indeed-logo.png"
                 alt="Indeed Immobilier"
-                width={140}
-                height={44}
-                className="object-contain h-10 w-auto"
+                width={180}
+                height={56}
+                className="object-contain h-14 w-auto"
                 priority
               />
             ) : (

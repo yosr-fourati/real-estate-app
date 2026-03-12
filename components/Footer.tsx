@@ -58,7 +58,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/indeed_immobilier/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 hover:text-white transition-colors"
