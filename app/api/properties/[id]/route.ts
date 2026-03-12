@@ -3,11 +3,14 @@ import { prisma } from "@/lib/prisma";
 import { getAuthSession } from "@/lib/auth";
 import { propertySchema } from "@/lib/validations";
 
+type RouteParams = { params: Promise<{ id: string }> };
+
 // GET /api/properties/:id
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, { params }: RouteParams) {
   try {
+    const { id } = await params;
     const property = await prisma.property.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: { images: { orderBy: { order: "asc" } } },
     });
     if (!property) return NextResponse.json({ error: "Non trouvé" }, { status: 404 });
@@ -19,11 +22,12 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
 }
 
 // PATCH /api/properties/:id (admin only)
-export async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(req: NextRequest, { params }: RouteParams) {
   try {
     const session = await getAuthSession();
     if (!session) return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
 
+    const { id } = await params;
     const body = await req.json();
     const { images: imageUrls, ...rest } = body;
 
@@ -32,21 +36,20 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       return NextResponse.json({ error: parsed.error.flatten().fieldErrors }, { status: 400 });
     }
 
-    // Update property + sync images
+    // Update property + sync images atomically
     const property = await prisma.$transaction(async (tx) => {
-      const updated = await tx.property.update({
-        where: { id: params.id },
+      await tx.property.update({
+        where: { id },
         data: parsed.data,
       });
 
       if (Array.isArray(imageUrls)) {
-        // Remove existing images and re-create
-        await tx.propertyImage.deleteMany({ where: { propertyId: params.id } });
+        await tx.propertyImage.deleteMany({ where: { propertyId: id } });
         if (imageUrls.length > 0) {
           await tx.propertyImage.createMany({
             data: imageUrls.map((url: string, i: number) => ({
               url,
-              propertyId: params.id,
+              propertyId: id,
               order: i,
             })),
           });
@@ -54,7 +57,7 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       }
 
       return tx.property.findUnique({
-        where: { id: params.id },
+        where: { id },
         include: { images: { orderBy: { order: "asc" } } },
       });
     });
@@ -67,12 +70,13 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 }
 
 // DELETE /api/properties/:id (admin only)
-export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, { params }: RouteParams) {
   try {
     const session = await getAuthSession();
     if (!session) return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
 
-    await prisma.property.delete({ where: { id: params.id } });
+    const { id } = await params;
+    await prisma.property.delete({ where: { id } });
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[DELETE /api/properties/:id]", err);
