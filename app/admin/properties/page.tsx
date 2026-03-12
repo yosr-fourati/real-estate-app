@@ -25,7 +25,7 @@ export default async function AdminPropertiesPage() {
           <p className="text-gray-500 mt-1">{properties.length} bien(s) au total</p>
         </div>
         <Link href="/admin/properties/new">
-          <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+          <Button className="bg-brand-500 hover:bg-brand-600 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Nouveau bien
           </Button>
@@ -36,7 +36,7 @@ export default async function AdminPropertiesPage() {
         <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center">
           <p className="text-gray-400 text-lg">Aucune propriété pour l&apos;instant</p>
           <Link href="/admin/properties/new" className="mt-4 inline-block">
-            <Button className="bg-orange-500 hover:bg-orange-600 text-white mt-4">
+            <Button className="bg-brand-500 hover:bg-brand-600 text-white mt-4">
               Ajouter votre premier bien
             </Button>
           </Link>
@@ -87,7 +87,7 @@ export default async function AdminPropertiesPage() {
                         {PROPERTY_TYPE_LABELS[p.type]}
                       </Badge>
                     </td>
-                    <td className="p-4 text-sm font-semibold text-orange-600">
+                    <td className="p-4 text-sm font-semibold text-brand-600">
                       {formatPrice(p.price, p.listingType)}
                     </td>
                     <td className="p-4">
@@ -109,7 +109,7 @@ export default async function AdminPropertiesPage() {
                           </Button>
                         </Link>
                         <Link href={`/admin/properties/${p.id}/edit`}>
-                          <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400 hover:text-orange-500">
+                          <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400 hover:text-brand-500">
                             <Pencil className="w-4 h-4" />
                           </Button>
                         </Link>

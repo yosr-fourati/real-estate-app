@@ -126,7 +126,7 @@ export default function PropertyForm({ property }: Props) {
       {/* Images */}
       <div className="bg-white rounded-2xl border border-gray-100 p-6">
         <h2 className="font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <ImagePlus className="w-5 h-5 text-orange-500" />
+          <ImagePlus className="w-5 h-5 text-brand-500" />
           Photos du bien
         </h2>
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mb-4">
@@ -141,14 +141,14 @@ export default function PropertyForm({ property }: Props) {
                 <X className="w-3 h-3" />
               </button>
               {i === 0 && (
-                <span className="absolute bottom-1 left-1 text-xs bg-orange-500 text-white px-1.5 py-0.5 rounded">
+                <span className="absolute bottom-1 left-1 text-xs bg-brand-500 text-white px-1.5 py-0.5 rounded">
                   Couverture
                 </span>
               )}
             </div>
           ))}
           <label
-            className={`aspect-square rounded-xl border-2 border-dashed border-gray-200 hover:border-orange-400 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+            className={`aspect-square rounded-xl border-2 border-dashed border-gray-200 hover:border-brand-400 flex flex-col items-center justify-center cursor-pointer transition-colors ${
               uploading ? "opacity-50 pointer-events-none" : ""
             }`}
           >
@@ -188,7 +188,7 @@ export default function PropertyForm({ property }: Props) {
             <Label htmlFor="type">Type de bien *</Label>
             <select
               id="type"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400"
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-400"
               {...register("type")}
             >
               <option value="APARTMENT">Appartement</option>
@@ -204,7 +204,7 @@ export default function PropertyForm({ property }: Props) {
             <Label htmlFor="listingType">Transaction *</Label>
             <select
               id="listingType"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400"
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-400"
               {...register("listingType")}
             >
               <option value="SALE">À Vendre</option>
@@ -241,7 +241,7 @@ export default function PropertyForm({ property }: Props) {
             <Label htmlFor="governorate">Gouvernorat *</Label>
             <select
               id="governorate"
-              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400"
+              className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-400"
               {...register("governorate")}
               onChange={(e) => {
                 setValue("governorate", e.target.value);
@@ -261,7 +261,7 @@ export default function PropertyForm({ property }: Props) {
             {delegations.length > 0 ? (
               <select
                 id="city"
-                className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-orange-400"
+                className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-400"
                 {...register("city")}
               >
                 <option value="">Sélectionner</option>
@@ -316,7 +316,7 @@ export default function PropertyForm({ property }: Props) {
             type="checkbox"
             id="isActive"
             {...register("isActive")}
-            className="w-4 h-4 accent-orange-500"
+            className="w-4 h-4 accent-brand-500"
           />
           <Label htmlFor="isActive" className="cursor-pointer">
             Bien actif (visible sur le site)
@@ -336,7 +336,7 @@ export default function PropertyForm({ property }: Props) {
         <Button
           type="submit"
           disabled={isSubmitting || uploading}
-          className="flex-1 bg-orange-500 hover:bg-orange-600 text-white"
+          className="flex-1 bg-brand-500 hover:bg-brand-600 text-white"
         >
           {isSubmitting ? (
             <>

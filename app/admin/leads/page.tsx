@@ -67,7 +67,7 @@ export default async function AdminLeadsPage() {
                       <a
                         href={`/properties/${lead.property.id}`}
                         target="_blank"
-                        className="text-xs text-orange-500 hover:underline line-clamp-2"
+                        className="text-xs text-brand-500 hover:underline line-clamp-2"
                       >
                         {lead.property.title}
                       </a>

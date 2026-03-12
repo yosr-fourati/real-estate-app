@@ -64,7 +64,7 @@ export default function LeadForm({ propertyId, propertyTitle }: Props) {
         <p className="text-sm text-gray-500 mt-1">Nous vous contacterons bientôt.</p>
         <button
           onClick={() => setSubmitted(false)}
-          className="text-xs text-orange-500 hover:underline mt-3"
+          className="text-xs text-brand-500 hover:underline mt-3"
         >
           Envoyer un autre message
         </button>
@@ -135,7 +135,7 @@ export default function LeadForm({ propertyId, propertyTitle }: Props) {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-orange-500 hover:bg-orange-600 text-white text-sm"
+        className="w-full bg-brand-500 hover:bg-brand-600 text-white text-sm"
       >
         {isSubmitting ? (
           <>

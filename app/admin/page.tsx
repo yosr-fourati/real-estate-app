@@ -49,8 +49,8 @@ export default async function AdminDashboardPage() {
           : "—",
       sub: "Biens actifs",
       icon: TrendingUp,
-      color: "text-orange-500",
-      bg: "bg-orange-50",
+      color: "text-brand-500",
+      bg: "bg-brand-50",
     },
   ];
 
@@ -63,7 +63,7 @@ export default async function AdminDashboardPage() {
           <p className="text-gray-500 mt-1">Vue d&apos;ensemble de votre activité</p>
         </div>
         <Link href="/admin/properties/new">
-          <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+          <Button className="bg-brand-500 hover:bg-brand-600 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Ajouter un bien
           </Button>
@@ -93,7 +93,7 @@ export default async function AdminDashboardPage() {
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="font-bold text-lg text-gray-900">Contacts récents</h2>
           <Link href="/admin/leads">
-            <Button variant="outline" size="sm" className="text-orange-500 border-orange-200">
+            <Button variant="outline" size="sm" className="text-brand-500 border-brand-200">
               <Eye className="w-4 h-4 mr-1" />
               Voir tout
             </Button>
@@ -109,7 +109,7 @@ export default async function AdminDashboardPage() {
                   <p className="font-semibold text-gray-800">{lead.name}</p>
                   <p className="text-sm text-gray-500">{lead.email}</p>
                   {lead.property && (
-                    <p className="text-xs text-orange-500 mt-0.5">→ {lead.property.title}</p>
+                    <p className="text-xs text-brand-500 mt-0.5">→ {lead.property.title}</p>
                   )}
                 </div>
                 <div className="text-right">

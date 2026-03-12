@@ -20,7 +20,7 @@ export default async function EditPropertyPage({ params }: Props) {
       <div>
         <Link
           href="/admin/properties"
-          className="inline-flex items-center gap-2 text-gray-500 hover:text-orange-500 mb-4 text-sm transition-colors"
+          className="inline-flex items-center gap-2 text-gray-500 hover:text-brand-500 mb-4 text-sm transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Retour à la liste

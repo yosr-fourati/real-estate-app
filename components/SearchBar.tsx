@@ -44,7 +44,7 @@ export default function SearchBar() {
             onClick={() => setListingType(t)}
             className={`flex-1 py-3 text-sm font-semibold transition-colors ${
               listingType === t
-                ? "text-orange-500 border-b-2 border-orange-500"
+                ? "text-brand-500 border-b-2 border-brand-500"
                 : "text-gray-500 hover:text-gray-700"
             }`}
           >
@@ -63,7 +63,7 @@ export default function SearchBar() {
               setGovernorate(e.target.value);
               setCity("");
             }}
-            className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-orange-400 bg-gray-50"
+            className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-brand-400 bg-gray-50"
           >
             <option value="">Gouvernorat</option>
             {GOVS.map((g) => (
@@ -78,7 +78,7 @@ export default function SearchBar() {
             value={city}
             onChange={(e) => setCity(e.target.value)}
             disabled={!governorate}
-            className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-orange-400 bg-gray-50 disabled:opacity-50"
+            className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-brand-400 bg-gray-50 disabled:opacity-50"
           >
             <option value="">Délégation</option>
             {delegations.map((d) => (
@@ -92,7 +92,7 @@ export default function SearchBar() {
           <select
             value={type}
             onChange={(e) => setType(e.target.value)}
-            className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-orange-400 bg-gray-50"
+            className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-700 focus:outline-none focus:border-brand-400 bg-gray-50"
           >
             {PROPERTY_TYPES.map((t) => (
               <option key={t.value} value={t.value}>
@@ -104,7 +104,7 @@ export default function SearchBar() {
 
         <Button
           type="submit"
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
+          className="w-full bg-brand-500 hover:bg-brand-600 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2"
         >
           <Search className="w-4 h-4" />
           Rechercher

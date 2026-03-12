@@ -12,7 +12,7 @@ export default function PropertyCard({ property }: { property: PropertyWithImage
 
   return (
     <Link href={`/properties/${property.id}`} className="group block">
-      <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 group-hover:border-orange-200">
+      <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100 group-hover:border-brand-200">
         {/* Image */}
         <div className="relative h-52 bg-gray-200 overflow-hidden">
           {cover ? (
@@ -29,7 +29,7 @@ export default function PropertyCard({ property }: { property: PropertyWithImage
             </div>
           )}
           <div className="absolute top-3 left-3 flex gap-1.5">
-            <Badge className="bg-orange-500 text-white text-xs px-2 py-0.5">
+            <Badge className="bg-brand-500 text-white text-xs px-2 py-0.5">
               {LISTING_TYPE_LABELS[property.listingType as ListingType]}
             </Badge>
             <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-white/90">
@@ -40,7 +40,7 @@ export default function PropertyCard({ property }: { property: PropertyWithImage
 
         {/* Content */}
         <div className="p-4">
-          <h3 className="font-bold text-gray-900 mb-1 line-clamp-1 group-hover:text-orange-500 transition-colors">
+          <h3 className="font-bold text-gray-900 mb-1 line-clamp-1 group-hover:text-brand-500 transition-colors">
             {property.title}
           </h3>
           <div className="flex items-center gap-1.5 text-gray-500 text-sm mb-3">
@@ -75,7 +75,7 @@ export default function PropertyCard({ property }: { property: PropertyWithImage
             </div>
           )}
 
-          <p className="text-xl font-bold text-orange-500">
+          <p className="text-xl font-bold text-brand-500">
             {formatPrice(property.price, property.listingType as ListingType)}
           </p>
         </div>
