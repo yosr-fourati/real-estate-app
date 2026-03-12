@@ -2,32 +2,35 @@
  * Quick property importer — run with:
  *   npx tsx scripts/add-property.ts
  *
- * Edit the PROPERTY object below, then run the script.
- * Images: paste direct image URLs (right-click image → Copy image address)
+ * Loads .env automatically (for DATABASE_URL / DIRECT_URL).
  */
+
+import { config } from "dotenv";
+import { resolve } from "path";
+// Load .env from project root (two levels up from scripts/)
+config({ path: resolve(__dirname, "../.env") });
+config({ path: resolve(__dirname, "../.env.local"), override: false });
 
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// ─── EDIT THIS BLOCK ───────────────────────────────────────────────────────────
 const PROPERTY = {
-  title: "",            // e.g. "Appartement S+3 à La Marsa"
-  description: ``,     // paste the full Facebook post text here (between backticks)
-  price: 0,            // in TND, e.g. 450000
-  listingType: "SALE" as "SALE" | "RENT",   // "SALE" or "RENT"
-  type: "APARTMENT" as "APARTMENT" | "VILLA" | "HOUSE" | "LAND" | "COMMERCIAL",
-  governorate: "",     // e.g. "Ariana", "Tunis", "La Manouba", ...
-  city: "",            // e.g. "La Marsa", "Ennasr", "Soukra", ...
-  address: "",         // optional full address
-  areaSqm: undefined as number | undefined,   // e.g. 150
-  bedrooms: undefined as number | undefined,  // e.g. 3
-  bathrooms: undefined as number | undefined, // e.g. 2
-  latitude: undefined as number | undefined,  // optional, e.g. 36.8625
-  longitude: undefined as number | undefined, // optional, e.g. 10.1846
-  images: [] as string[], // paste image URLs here, e.g. ["https://...", "https://..."]
+  title: "",                            // ← fill in
+  description: ``,                      // ← fill in
+  price: 0,                             // ← fill in (TND)
+  listingType: "SALE" as "SALE" | "RENT",
+  type: "VILLA" as "APARTMENT" | "VILLA" | "HOUSE" | "LAND" | "COMMERCIAL",
+  governorate: "",                      // ← fill in
+  city: "",                             // ← fill in
+  address: "",
+  areaSqm: undefined as number | undefined,
+  bedrooms: undefined as number | undefined,
+  bathrooms: undefined as number | undefined,
+  latitude: undefined as number | undefined,
+  longitude: undefined as number | undefined,
+  images: [] as string[],
 };
-// ───────────────────────────────────────────────────────────────────────────────
 
 async function main() {
   if (!PROPERTY.title) {
@@ -65,7 +68,7 @@ async function main() {
   console.log(`✅ Property created: "${property.title}" (ID: ${property.id})`);
   console.log(`   Type: ${property.type} | Listing: ${property.listingType} | Price: ${property.price} TND`);
   console.log(`   Location: ${property.city}, ${property.governorate}`);
-  console.log(`   Images: ${property.images.length}`);
+  console.log(`   Images: ${property.images.length} (add via admin panel)`);
 }
 
 main()
