@@ -46,21 +46,22 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/80 via-transparent to-black/20" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <p className="font-semibold mb-3 tracking-widest uppercase text-sm" style={{ color: "#002B5B" }}>
-            Agence Immobilière de Confiance
-          </p>
+          {/* Frosted-glass badge */}
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-8 shadow-lg">
+            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: "#c73636" }} />
+            <span className="text-white text-xs font-semibold tracking-widest uppercase">
+              Agence Immobilière de Confiance
+            </span>
+          </div>
+
           <h1
-            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
-            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
+            className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg"
           >
             Trouvez votre bien
-            <span style={{ color: "#002B5B" }}> idéal</span>
+            <span style={{ color: "#c73636" }}> idéal</span>
             <br />en Tunisie
           </h1>
-          <p
-            className="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
-            style={{ textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}
-          >
+          <p className="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto drop-shadow">
             Vente et location d&apos;appartements, villas, maisons et terrains dans toute la Tunisie.
           </p>
           <SearchBar />
