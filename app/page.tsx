@@ -32,9 +32,9 @@ export default async function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        {/* Background photo */}
+        {/* Background photo — blurred */}
         <div
-          className="absolute inset-0 bg-cover bg-center scale-105"
+          className="absolute inset-0 bg-cover bg-center scale-110 blur-sm"
           style={{
             backgroundImage:
               "url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80')",
@@ -46,7 +46,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/80 via-transparent to-black/20" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <p className="font-semibold mb-3 tracking-widest uppercase text-sm" style={{ color: "#c73636" }}>
+          <p className="font-semibold mb-3 tracking-widest uppercase text-sm" style={{ color: "#002B5B" }}>
             Agence Immobilière de Confiance
           </p>
           <h1
@@ -54,7 +54,7 @@ export default async function HomePage() {
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
           >
             Trouvez votre bien
-            <span style={{ color: "#c73636" }}> idéal</span>
+            <span style={{ color: "#002B5B" }}> idéal</span>
             <br />en Tunisie
           </h1>
           <p
