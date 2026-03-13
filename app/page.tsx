@@ -57,7 +57,7 @@ export default async function HomePage() {
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg"
           >
             Trouvez votre bien
-            <span style={{ color: "#002B5B" }}> idéal</span>
+            <span className="text-white"> idéal</span>
             <br />en Tunisie
           </h1>
           <p className="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto drop-shadow">
