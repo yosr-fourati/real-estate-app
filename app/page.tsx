@@ -32,24 +32,35 @@ export default async function HomePage() {
     <>
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-brand-900" />
+        {/* Background photo */}
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-30"
+          className="absolute inset-0 bg-cover bg-center scale-105"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80')",
+              "url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80')",
           }}
         />
+        {/* Strong dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/55" />
+        {/* Brand-colored gradient rising from bottom */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/80 via-transparent to-black/20" />
+
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <p className="text-brand-400 font-semibold mb-3 tracking-wider uppercase text-sm">
+          <p className="text-blue-300 font-semibold mb-3 tracking-widest uppercase text-sm">
             Agence Immobilière de Confiance
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1
+            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+            style={{ textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
+          >
             Trouvez votre bien
-            <span className="text-brand-500"> idéal</span>
+            <span className="text-blue-300"> idéal</span>
             <br />en Tunisie
           </h1>
-          <p className="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+          <p
+            className="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto"
+            style={{ textShadow: "0 1px 12px rgba(0,0,0,0.5)" }}
+          >
             Vente et location d&apos;appartements, villas, maisons et terrains dans toute la Tunisie.
           </p>
           <SearchBar />
