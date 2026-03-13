@@ -40,20 +40,16 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            {scrolled || !isHome ? (
-              <Image
-                src="/indeed-logo.png"
-                alt="Indeed Immobilier"
-                width={180}
-                height={56}
-                className="object-contain h-14 w-auto"
-                priority
-              />
-            ) : (
-              <span className="font-bold text-xl text-white drop-shadow-md">
-                Indeed immobilier
-              </span>
-            )}
+            <Image
+              src="/indeed-logo.png"
+              alt="Indeed Immobilier"
+              width={260}
+              height={80}
+              className={`object-contain h-[72px] w-auto transition-all ${
+                scrolled || !isHome ? "" : "brightness-0 invert"
+              }`}
+              priority
+            />
           </Link>
 
           {/* Desktop nav */}
