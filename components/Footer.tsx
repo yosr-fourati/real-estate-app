@@ -54,7 +54,14 @@ export default function Footer() {
             </li>
             <li className="flex items-start gap-2">
               <MapPin className="w-4 h-4 text-blue-300 flex-shrink-0 mt-0.5" />
-              <span>065 Avenue Habib Bourguiba,<br />Ariana 2080, Tunisie</span>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=065+Avenue+Habib+Bourguiba+Ariana+2080+Tunisie"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                065 Avenue Habib Bourguiba,<br />Ariana 2080, Tunisie
+              </a>
             </li>
             <li>
               <a
