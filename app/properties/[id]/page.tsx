@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import LeadForm from "@/components/LeadForm";
 import PropertyMapClient from "@/components/PropertyMapClient";
+import ImageGallery from "@/components/ImageGallery";
 import { formatPrice, PROPERTY_TYPE_LABELS, LISTING_TYPE_LABELS } from "@/lib/utils";
 import { ArrowLeft, MapPin, Bed, Bath, Maximize2, Phone, MessageCircle, Calendar } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -35,7 +35,6 @@ export default async function PropertyDetailPage({ params }: Props) {
   if (!property) notFound();
 
   const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "21626454266";
-  const coverImage = property.images[0]?.url ?? null;
 
   return (
     <div className="min-h-screen bg-gray-50 pt-20">
@@ -52,41 +51,25 @@ export default async function PropertyDetailPage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left: Images + Details */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Cover Image */}
-            <div className="relative h-72 md:h-96 w-full rounded-2xl overflow-hidden bg-gray-200">
-              {coverImage ? (
-                <Image
-                  src={coverImage}
-                  alt={property.images[0]?.alt ?? property.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full text-gray-400">
-                  Aucune image disponible
-                </div>
-              )}
-              <div className="absolute top-4 left-4 flex gap-2">
-                <Badge className="bg-brand-500 text-white text-sm">
-                  {LISTING_TYPE_LABELS[property.listingType]}
-                </Badge>
-                <Badge variant="secondary" className="text-sm">
-                  {PROPERTY_TYPE_LABELS[property.type]}
-                </Badge>
-              </div>
+            {/* Badges */}
+            <div className="flex gap-2">
+              <Badge className="bg-brand-500 text-white text-sm">
+                {LISTING_TYPE_LABELS[property.listingType]}
+              </Badge>
+              <Badge variant="secondary" className="text-sm">
+                {PROPERTY_TYPE_LABELS[property.type]}
+              </Badge>
             </div>
 
-            {/* Image Gallery */}
-            {property.images.length > 1 && (
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                {property.images.slice(1).map((img) => (
-                  <div key={img.id} className="relative h-24 rounded-lg overflow-hidden bg-gray-200">
-                    <Image src={img.url} alt={img.alt ?? property.title} fill className="object-cover" />
-                  </div>
-                ))}
-              </div>
-            )}
+            {/* Image Gallery with lightbox */}
+            <ImageGallery
+              images={property.images.map((img) => ({
+                id: img.id,
+                url: img.url,
+                alt: img.alt,
+              }))}
+              title={property.title}
+            />
 
             {/* Title + Price */}
             <div>
