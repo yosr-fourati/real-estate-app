@@ -16,11 +16,16 @@ export const metadata: Metadata = {
   description:
     "Trouvez votre bien immobilier idéal en Tunisie. Vente et location d'appartements, villas, maisons et terrains.",
   keywords: ["immobilier tunisie", "vente appartement tunisie", "villa tunisie", "location tunisie"],
+  icons: {
+    icon: "/indeed-logo.png",
+    apple: "/indeed-logo.png",
+  },
   openGraph: {
     title: "Indeed Immobilier",
     description: "Agence immobilière en Tunisie – Vente & Location",
     type: "website",
     locale: "fr_TN",
+    images: [{ url: "/indeed-logo.png" }],
   },
 };
 
