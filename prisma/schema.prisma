@@ -1,0 +1,99 @@
+// ---------- Data Source ----------
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ---------- Generator ----------
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ---------- Models ----------
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+}
+
+model Property {
+  id          String          @id @default(cuid())
+  title       String
+  description String          @default("")
+  price       Int
+  city        String
+  governorate String          @default("")
+  type        PropertyType
+  listingType ListingType     @default(SALE)
+  address     String?
+  latitude    Float?
+  longitude   Float?
+  bedrooms    Int?
+  bathrooms   Int?
+  areaSqm     Int?
+  isActive    Boolean         @default(true)
+  images      PropertyImage[]
+  leads       Lead[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@index([city])
+  @@index([type])
+  @@index([price])
+  @@index([governorate])
+  @@index([listingType])
+  @@index([isActive, city, type, price])
+}
+
+enum PropertyType {
+  APARTMENT
+  HOUSE
+  VILLA
+  LAND
+  COMMERCIAL
+}
+
+enum ListingType {
+  SALE
+  RENT
+}
+
+model PropertyImage {
+  id         String   @id @default(cuid())
+  url        String
+  alt        String?
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  order      Int      @default(0)
+}
+
+model Lead {
+  id         String     @id @default(cuid())
+  name       String
+  email      String
+  phone      String?
+  message    String
+  propertyId String?
+  property   Property?  @relation(fields: [propertyId], references: [id], onDelete: SetNull)
+  status     LeadStatus @default(NEW)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  @@index([propertyId])
+  @@index([status, createdAt])
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}

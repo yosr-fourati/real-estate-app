@@ -1,14 +1,19 @@
 # dependencies
 node_modules/
 
+# Next.js
+.next/
+out/
+
 # builds
 dist/
 server/dist/
 client/dist/
 
-# env & secrets
+# env & secrets — NEVER commit
 .env
-.env.*
+.env.local
+.env.*.local
 server/.env
 client/.env
 
@@ -16,7 +21,15 @@ client/.env
 prisma/*.db
 *.sqlite
 
+# Vercel
+.vercel
+
+# TypeScript build
+*.tsbuildinfo
+next-env.d.ts
+
 # logs & misc
 *.log
 .DS_Store
 .vscode/
+Thumbs.db
