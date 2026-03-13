@@ -47,8 +47,7 @@ export default async function HomePage() {
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           {/* Frosted-glass badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-8 shadow-lg">
-            <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: "#c73636" }} />
+          <div className="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-8 shadow-lg">
             <span className="text-white text-xs font-semibold tracking-widest uppercase">
               Agence Immobilière de Confiance
             </span>
