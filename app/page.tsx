@@ -46,7 +46,7 @@ export default async function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/80 via-transparent to-black/20" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <p className="text-blue-300 font-semibold mb-3 tracking-widest uppercase text-sm">
+          <p className="font-semibold mb-3 tracking-widest uppercase text-sm" style={{ color: "#c73636" }}>
             Agence Immobilière de Confiance
           </p>
           <h1
@@ -54,7 +54,7 @@ export default async function HomePage() {
             style={{ textShadow: "0 2px 24px rgba(0,0,0,0.6)" }}
           >
             Trouvez votre bien
-            <span className="text-blue-300"> idéal</span>
+            <span style={{ color: "#c73636" }}> idéal</span>
             <br />en Tunisie
           </h1>
           <p

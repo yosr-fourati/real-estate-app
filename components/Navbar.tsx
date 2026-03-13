@@ -64,7 +64,9 @@ export default function Navbar() {
                 href={href}
                 className={`text-sm font-medium transition-colors ${
                   pathname === href
-                    ? "text-brand-500"
+                    ? scrolled || !isHome
+                      ? "text-brand-500"
+                      : "text-white font-semibold"
                     : scrolled || !isHome
                     ? "text-gray-700 hover:text-brand-500"
                     : "text-white/90 hover:text-white"
