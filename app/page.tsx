@@ -27,23 +27,11 @@ async function getStats() {
 }
 
 export default async function HomePage() {
-  let properties: Awaited<ReturnType<typeof getFeaturedProperties>> = [];
-  let stats = { total: 0, forSale: 0, forRent: 0 };
-  let dbError: string | null = null;
-  try {
-    [properties, stats] = await Promise.all([getFeaturedProperties(), getStats()]);
-  } catch (e: unknown) {
-    dbError = e instanceof Error ? e.message : String(e);
-  }
+  const [properties, stats] = await Promise.all([getFeaturedProperties(), getStats()]);
   const whatsapp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "21626454266";
 
   return (
     <>
-      {dbError && (
-        <div style={{background:"#fee",color:"#900",padding:"20px",fontFamily:"monospace",whiteSpace:"pre-wrap",wordBreak:"break-all"}}>
-          <strong>DB ERROR (temporary debug):</strong>{"\n"}{dbError}
-        </div>
-      )}
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Background photo — blurred */}
