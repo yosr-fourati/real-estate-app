@@ -1,6 +1,6 @@
 # Indeed Immobilier – Real Estate Platform
 
-Professional real estate website for **Indeed Immobilier**, an agency based in Ennasr, Ariana, Tunisia. Buy, sell, and rent apartments, villas, houses, and land across Tunisia.
+Professional real estate website for **Indeed Immobilier**, an agency based in Ariana, Tunisia. Buy, sell, and rent apartments, villas, houses, and land across Tunisia.
 
 ## Live Site
 
