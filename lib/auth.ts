@@ -30,7 +30,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const ip = credentials.ip ?? "unknown";
+        const ip = credentials.email ?? "unknown";
         if (!checkRateLimit(ip)) return null;
 
         const user = await prisma.user.findUnique({

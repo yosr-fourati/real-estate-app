@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -12,19 +12,10 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Lock } from "lucide-react";
 
-function useMathCaptcha() {
-  const { a, b } = useMemo(() => ({
-    a: Math.floor(Math.random() * 9) + 1,
-    b: Math.floor(Math.random() * 9) + 1,
-  }), []);
-  return { question: `${a} + ${b} = ?`, answer: a + b };
-}
-
 export default function AdminLoginPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
-  const [captchaInput, setCaptchaInput] = useState("");
-  const { question, answer } = useMathCaptcha();
+  const [isHuman, setIsHuman] = useState(false);
 
   const {
     register,
@@ -39,8 +30,8 @@ export default function AdminLoginPage() {
 
   async function onSubmit(data: LoginFormData) {
     setError(null);
-    if (parseInt(captchaInput) !== answer) {
-      setError("Réponse au calcul incorrecte.");
+    if (!isHuman) {
+      setError("Veuillez confirmer que vous n'êtes pas un robot.");
       return;
     }
     const res = await signIn("credentials", {
@@ -101,15 +92,21 @@ export default function AdminLoginPage() {
             )}
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="captcha">Vérification : {question}</Label>
-            <Input
-              id="captcha"
-              type="number"
-              placeholder="Votre réponse"
-              value={captchaInput}
-              onChange={(e) => setCaptchaInput(e.target.value)}
-            />
+          <div
+            onClick={() => setIsHuman(!isHuman)}
+            className={`flex items-center gap-3 border-2 rounded-xl px-4 py-3 cursor-pointer select-none transition-all ${
+              isHuman ? "border-brand-500 bg-brand-50" : "border-gray-200 hover:border-gray-300"
+            }`}
+          >
+            <div className={`w-6 h-6 rounded flex items-center justify-center border-2 transition-all flex-shrink-0 ${
+              isHuman ? "bg-brand-500 border-brand-500" : "border-gray-300"
+            }`}>
+              {isHuman && <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
+            </div>
+            <span className="text-sm text-gray-700 font-medium">Je ne suis pas un robot</span>
+            <div className="ml-auto opacity-40">
+              <svg viewBox="0 0 64 64" className="w-8 h-8" fill="none"><circle cx="32" cy="20" r="10" stroke="currentColor" strokeWidth="2"/><path d="M12 56c0-11 9-20 20-20s20 9 20 20" stroke="currentColor" strokeWidth="2"/></svg>
+            </div>
           </div>
 
           <Button
