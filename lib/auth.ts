@@ -3,14 +3,14 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 
-// Simple in-memory rate limiter: max 5 attempts per IP per 15 minutes
+// Simple in-memory rate limiter: max 5 attempts per email per 15 minutes
 const loginAttempts = new Map<string, { count: number; resetAt: number }>();
 
-function checkRateLimit(ip: string): boolean {
+function checkRateLimit(key: string): boolean {
   const now = Date.now();
-  const entry = loginAttempts.get(ip);
+  const entry = loginAttempts.get(key);
   if (!entry || now > entry.resetAt) {
-    loginAttempts.set(ip, { count: 1, resetAt: now + 15 * 60 * 1000 });
+    loginAttempts.set(key, { count: 1, resetAt: now + 15 * 60 * 1000 });
     return true;
   }
   if (entry.count >= 5) return false;
@@ -30,8 +30,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
 
-        const ip = credentials.email ?? "unknown";
-        if (!checkRateLimit(ip)) return null;
+        if (!checkRateLimit(credentials.email)) return null;
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
@@ -67,8 +66,8 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/gestion/login",
-    error: "/gestion/login",
+    signIn: "/portail/login",
+    error: "/portail/login",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

@@ -108,7 +108,7 @@ export default function PropertyForm({ property }: Props) {
         return;
       }
 
-      router.push("/gestion/properties");
+      router.push("/portail/properties");
       router.refresh();
     } catch {
       setServerError("Erreur réseau. Réessayez.");

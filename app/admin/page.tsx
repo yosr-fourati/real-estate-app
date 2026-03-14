@@ -1,4 +1,4 @@
 import { redirect } from "next/navigation";
-export default function OldAdminRedirect() {
-  redirect("/gestion");
+export default function AdminRedirect() {
+  redirect("/");
 }
