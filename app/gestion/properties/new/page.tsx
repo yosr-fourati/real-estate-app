@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import PropertyForm from "@/components/admin/PropertyForm";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
@@ -9,7 +7,7 @@ export default function NewPropertyPage() {
     <div className="space-y-6 max-w-3xl">
       <div>
         <Link
-          href="/admin/properties"
+          href="/gestion/properties"
           className="inline-flex items-center gap-2 text-gray-500 hover:text-brand-500 mb-4 text-sm transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />

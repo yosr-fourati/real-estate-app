@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
@@ -26,7 +24,7 @@ export default async function AdminPropertiesPage() {
           <h1 className="text-3xl font-bold text-gray-900">Propriétés</h1>
           <p className="text-gray-500 mt-1">{properties.length} bien(s) au total</p>
         </div>
-        <Link href="/admin/properties/new">
+        <Link href="/gestion/properties/new">
           <Button className="bg-brand-500 hover:bg-brand-600 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Nouveau bien
@@ -37,7 +35,7 @@ export default async function AdminPropertiesPage() {
       {properties.length === 0 ? (
         <div className="bg-white rounded-2xl border border-gray-100 p-12 text-center">
           <p className="text-gray-400 text-lg">Aucune propriété pour l&apos;instant</p>
-          <Link href="/admin/properties/new" className="mt-4 inline-block">
+          <Link href="/gestion/properties/new" className="mt-4 inline-block">
             <Button className="bg-brand-500 hover:bg-brand-600 text-white mt-4">
               Ajouter votre premier bien
             </Button>
@@ -110,7 +108,7 @@ export default async function AdminPropertiesPage() {
                             <Eye className="w-4 h-4" />
                           </Button>
                         </Link>
-                        <Link href={`/admin/properties/${p.id}/edit`}>
+                        <Link href={`/gestion/properties/${p.id}/edit`}>
                           <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-400 hover:text-brand-500">
                             <Pencil className="w-4 h-4" />
                           </Button>

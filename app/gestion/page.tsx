@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { Building2, Users, TrendingUp, Plus, Eye } from "lucide-react";
@@ -64,7 +62,7 @@ export default async function AdminDashboardPage() {
           <h1 className="text-3xl font-bold text-gray-900">Tableau de bord</h1>
           <p className="text-gray-500 mt-1">Vue d&apos;ensemble de votre activité</p>
         </div>
-        <Link href="/admin/properties/new">
+        <Link href="/gestion/properties/new">
           <Button className="bg-brand-500 hover:bg-brand-600 text-white">
             <Plus className="w-4 h-4 mr-2" />
             Ajouter un bien
@@ -94,7 +92,7 @@ export default async function AdminDashboardPage() {
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm">
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="font-bold text-lg text-gray-900">Contacts récents</h2>
-          <Link href="/admin/leads">
+          <Link href="/gestion/leads">
             <Button variant="outline" size="sm" className="text-brand-500 border-brand-200">
               <Eye className="w-4 h-4 mr-1" />
               Voir tout

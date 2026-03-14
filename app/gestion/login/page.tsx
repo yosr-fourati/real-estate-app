@@ -23,7 +23,7 @@ export default function AdminLoginPage() {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: process.env.NODE_ENV === "development" ? "admin@indeed-immo.tn" : "",
+      email: "",
     },
   });
 
@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
     if (res?.error) {
       setError("Email ou mot de passe incorrect");
     } else {
-      router.push("/admin");
+      router.push("/gestion");
     }
   }
 
@@ -65,7 +65,7 @@ export default function AdminLoginPage() {
             <Input
               id="email"
               type="email"
-              placeholder="admin@indeed-immo.tn"
+              placeholder="Email"
               {...register("email")}
             />
             {errors.email && (

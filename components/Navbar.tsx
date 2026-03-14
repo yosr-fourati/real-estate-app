@@ -24,7 +24,7 @@ export default function Navbar() {
   }, []);
 
   const isHome = pathname === "/";
-  const isAdmin = pathname.startsWith("/admin");
+  const isAdmin = pathname.startsWith("/gestion");
 
   if (isAdmin) return null;
 

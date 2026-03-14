@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { prisma } from "@/lib/prisma";
 import UpdateLeadStatusButton from "@/components/admin/UpdateLeadStatusButton";
 import { Badge } from "@/components/ui/badge";

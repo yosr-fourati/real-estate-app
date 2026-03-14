@@ -10,9 +10,9 @@ import { Home, Building2, Users, LogOut, BarChart3 } from "lucide-react";
 import { Loader2 } from "lucide-react";
 
 const navItems = [
-  { href: "/admin", label: "Tableau de bord", icon: BarChart3 },
-  { href: "/admin/properties", label: "Propriétés", icon: Building2 },
-  { href: "/admin/leads", label: "Contacts", icon: Users },
+  { href: "/gestion", label: "Tableau de bord", icon: BarChart3 },
+  { href: "/gestion/properties", label: "Propriétés", icon: Building2 },
+  { href: "/gestion/leads", label: "Contacts", icon: Users },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -29,12 +29,12 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (status === "unauthenticated" && pathname !== "/admin/login") {
-      router.push("/admin/login");
+    if (status === "unauthenticated" && pathname !== "/gestion/login") {
+      router.push("/gestion/login");
     }
   }, [status, pathname, router]);
 
-  if (pathname === "/admin/login") {
+  if (pathname === "/gestion/login") {
     return <>{children}</>;
   }
 
@@ -80,7 +80,7 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
         <div className="p-4 border-t border-gray-700">
           <p className="text-xs text-gray-400 truncate mb-3">{session.user?.email}</p>
           <button
-            onClick={() => signOut({ callbackUrl: "/admin/login" })}
+            onClick={() => signOut({ callbackUrl: "/gestion/login" })}
             className="flex items-center gap-2 text-gray-300 hover:text-red-400 text-sm transition-colors w-full"
           >
             <LogOut className="w-4 h-4" />
