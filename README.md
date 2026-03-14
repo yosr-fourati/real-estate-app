@@ -1,27 +1,43 @@
-# Indeed Immobilier – Plateforme Immobilière
+# Indeed Immobilier – Real Estate Platform
 
-Site web professionnel pour **Indeed Immobilier**, une agence immobilière basée à Ennasr, Ariana (Tunisie). Vente et location d'appartements, villas, maisons et terrains dans toute la Tunisie.
+Professional real estate website for **Indeed Immobilier**, an agency based in Ennasr, Ariana, Tunisia. Buy, sell, and rent apartments, villas, houses, and land across Tunisia.
 
-## Liens
+## Live Site
 
-- 🌍 **Site web** : [indeedimmobilier.com](https://indeedimmobilier.com)
-- 📸 Instagram : [@indeed_immobilier](https://www.instagram.com/indeed_immobilier/)
-- 📍 Google Maps : [Localisation](https://maps.app.goo.gl/mSMDc1rwtRgSvVhs5?g_st=ic)
-- 📧 fouratiimmo@gmail.com
-- 📞 26 454 266
+**[indeedimmobilier.com](https://indeedimmobilier.com)**
 
-## Stack Technique
+## Contact
 
-- **Framework** : Next.js 15 (App Router)
-- **Base de données** : PostgreSQL (Supabase) + Prisma ORM
-- **Auth** : NextAuth v4 (JWT)
-- **UI** : Tailwind CSS + shadcn/ui
-- **Déploiement** : Vercel
-- **Stockage images** : Cloudinary
+- Instagram: [@indeed_immobilier](https://www.instagram.com/indeed_immobilier/)
+- Google Maps: [View location](https://maps.app.goo.gl/mSMDc1rwtRgSvVhs5?g_st=ic)
+- Email: fouratiimmo@gmail.com
+- Phone: +216 26 454 266
 
-## Fonctionnalités
+## Tech Stack
 
-- Catalogue de biens immobiliers avec filtres (gouvernorat, délégation, type, prix)
-- Fiche détaillée de chaque bien avec galerie photos
-- Formulaire de contact intégré
-- Panel d'administration sécurisé (auth + captcha + rate limiting)
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Database | PostgreSQL (Supabase) + Prisma ORM |
+| Auth | NextAuth v4 (JWT) |
+| UI | Tailwind CSS + shadcn/ui |
+| Image Storage | Cloudinary via Supabase Storage |
+| Deployment | Vercel |
+
+## Features
+
+- Property listings with filters (governorate, delegation, type, price range)
+- Detailed property pages with image gallery
+- Contact form with lead management
+- Secure admin panel (login with math captcha + rate limiting)
+- Mobile-responsive design
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in your values:
+
+```bash
+cp .env.example .env.local
+```
+
+Required variables: `DATABASE_URL`, `NEXTAUTH_SECRET`, `NEXTAUTH_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
