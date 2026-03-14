@@ -122,7 +122,7 @@ export default async function PropertyDetailPage({ params }: Props) {
             </div>
 
             {/* Map */}
-            {property.latitude && property.longitude && (
+            {!!property.latitude && !!property.longitude && (
               <div className="bg-white rounded-xl p-4 border border-gray-100">
                 <h2 className="text-xl font-bold mb-3 text-gray-900">Localisation</h2>
                 <div className="h-64 rounded-lg overflow-hidden">
