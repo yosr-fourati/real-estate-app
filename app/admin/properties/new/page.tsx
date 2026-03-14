@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import PropertyForm from "@/components/admin/PropertyForm";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
