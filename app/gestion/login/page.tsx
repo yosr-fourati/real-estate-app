@@ -32,11 +32,12 @@ export default function AdminLoginPage() {
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
+      ip: "client",
       redirect: false,
     });
 
     if (res?.error) {
-      setError("Email ou mot de passe incorrect");
+      setError("Email ou mot de passe incorrect. Trop de tentatives bloque l'accès 15 minutes.");
     } else {
       router.push("/gestion");
     }
