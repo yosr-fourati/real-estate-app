@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -12,9 +12,19 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Lock } from "lucide-react";
 
+function useMathCaptcha() {
+  const { a, b } = useMemo(() => ({
+    a: Math.floor(Math.random() * 9) + 1,
+    b: Math.floor(Math.random() * 9) + 1,
+  }), []);
+  return { question: `${a} + ${b} = ?`, answer: a + b };
+}
+
 export default function AdminLoginPage() {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const [captchaInput, setCaptchaInput] = useState("");
+  const { question, answer } = useMathCaptcha();
 
   const {
     register,
@@ -29,6 +39,10 @@ export default function AdminLoginPage() {
 
   async function onSubmit(data: LoginFormData) {
     setError(null);
+    if (parseInt(captchaInput) !== answer) {
+      setError("Réponse au calcul incorrecte.");
+      return;
+    }
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
@@ -85,6 +99,17 @@ export default function AdminLoginPage() {
             {errors.password && (
               <p className="text-red-500 text-xs">{errors.password.message}</p>
             )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="captcha">Vérification : {question}</Label>
+            <Input
+              id="captcha"
+              type="number"
+              placeholder="Votre réponse"
+              value={captchaInput}
+              onChange={(e) => setCaptchaInput(e.target.value)}
+            />
           </div>
 
           <Button
