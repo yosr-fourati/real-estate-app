@@ -47,7 +47,7 @@ export default async function HomePage() {
         {/* Brand-colored gradient rising from bottom */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#002B5B]/80 via-transparent to-black/20" />
 
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto pt-20 md:pt-0">
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto pt-28 md:pt-0">
           {/* Frosted-glass badge */}
           <div className="inline-flex items-center bg-white/10 backdrop-blur-md border border-white/25 rounded-full px-5 py-2 mb-8 shadow-lg">
             <span className="text-white text-xs font-semibold tracking-widest uppercase">
