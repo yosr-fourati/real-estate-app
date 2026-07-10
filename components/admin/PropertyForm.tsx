@@ -178,14 +178,14 @@ export default function PropertyForm({ property }: Props) {
         <h2 className="font-bold text-gray-800">Informations principales</h2>
 
         <div>
-          <Label htmlFor="title">Titre *</Label>
+          <Label htmlFor="title">Titre</Label>
           <Input id="title" placeholder="Ex: Villa de luxe à La Marsa" className="mt-1" {...register("title")} />
           {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title.message}</p>}
         </div>
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="type">Type de bien *</Label>
+            <Label htmlFor="type">Type de bien</Label>
             <select
               id="type"
               className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-400"
@@ -201,7 +201,7 @@ export default function PropertyForm({ property }: Props) {
           </div>
 
           <div>
-            <Label htmlFor="listingType">Transaction *</Label>
+            <Label htmlFor="listingType">Transaction</Label>
             <select
               id="listingType"
               className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-400"
@@ -214,13 +214,13 @@ export default function PropertyForm({ property }: Props) {
         </div>
 
         <div>
-          <Label htmlFor="price">Prix (TND) *</Label>
-          <Input id="price" type="number" placeholder="Ex: 450000" className="mt-1" {...register("price")} />
+          <Label htmlFor="price">Prix (TND) <span className="text-gray-400 font-normal text-xs">(optionnel)</span></Label>
+          <Input id="price" type="number" placeholder="Laisser vide si inconnu" className="mt-1" {...register("price")} />
           {errors.price && <p className="text-red-500 text-xs mt-1">{errors.price.message}</p>}
         </div>
 
         <div>
-          <Label htmlFor="description">Description *</Label>
+          <Label htmlFor="description">Description <span className="text-gray-400 font-normal text-xs">(optionnel)</span></Label>
           <Textarea
             id="description"
             rows={5}
@@ -238,7 +238,7 @@ export default function PropertyForm({ property }: Props) {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="governorate">Gouvernorat *</Label>
+            <Label htmlFor="governorate">Gouvernorat <span className="text-gray-400 font-normal text-xs">(optionnel)</span></Label>
             <select
               id="governorate"
               className="w-full mt-1 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-400"
@@ -257,7 +257,7 @@ export default function PropertyForm({ property }: Props) {
           </div>
 
           <div>
-            <Label htmlFor="city">Délégation / Ville *</Label>
+            <Label htmlFor="city">Délégation / Ville <span className="text-gray-400 font-normal text-xs">(optionnel)</span></Label>
             {delegations.length > 0 ? (
               <select
                 id="city"

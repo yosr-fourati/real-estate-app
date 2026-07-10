@@ -2,11 +2,11 @@ import { z } from "zod";
 
 // ---- Property ----
 export const propertySchema = z.object({
-  title: z.string().min(5, "Titre requis (min 5 caractères)"),
-  description: z.string().min(10, "Description requise (min 10 caractères)"),
-  price: z.coerce.number().positive("Le prix doit être positif"),
-  city: z.string().min(2, "Ville requise"),
-  governorate: z.string().min(2, "Gouvernorat requis"),
+  title: z.string().min(2, "Le titre est requis"),
+  description: z.string().optional().default(""),
+  price: z.coerce.number().nonnegative().default(0),
+  city: z.string().optional().default(""),
+  governorate: z.string().optional().default(""),
   type: z.enum(["APARTMENT", "HOUSE", "VILLA", "LAND", "COMMERCIAL"]),
   listingType: z.enum(["SALE", "RENT"]).default("SALE"),
   address: z.string().optional(),
