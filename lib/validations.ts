@@ -12,9 +12,9 @@ export const propertySchema = z.object({
   address: z.string().optional(),
   latitude: z.coerce.number().optional().nullable(),
   longitude: z.coerce.number().optional().nullable(),
-  bedrooms: z.coerce.number().int().positive().optional().nullable(),
-  bathrooms: z.coerce.number().int().positive().optional().nullable(),
-  areaSqm: z.coerce.number().int().positive().optional().nullable(),
+  bedrooms: z.preprocess((v) => (!v || Number(v) <= 0 ? null : v), z.coerce.number().int().positive().optional().nullable()),
+  bathrooms: z.preprocess((v) => (!v || Number(v) <= 0 ? null : v), z.coerce.number().int().positive().optional().nullable()),
+  areaSqm: z.preprocess((v) => (!v || Number(v) <= 0 ? null : v), z.coerce.number().int().positive().optional().nullable()),
   isActive: z.boolean().default(true),
 });
 
