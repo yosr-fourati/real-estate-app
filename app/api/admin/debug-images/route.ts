@@ -7,17 +7,23 @@ export async function GET() {
   const session = await getAuthSession();
   if (!session) return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
 
-  const images = await prisma.propertyImage.findMany({
-    take: 30,
-    orderBy: { id: "asc" },
-    select: { id: true, url: true, propertyId: true },
+  const properties = await prisma.property.findMany({
+    where: { isActive: true },
+    select: {
+      id: true,
+      title: true,
+      _count: { select: { images: true } },
+      images: { take: 1, orderBy: { order: "asc" }, select: { url: true } },
+    },
+    orderBy: { createdAt: "desc" },
   });
 
-  const grouped = images.reduce((acc: Record<string, string[]>, img) => {
-    if (!acc[img.propertyId]) acc[img.propertyId] = [];
-    acc[img.propertyId].push(img.url);
-    return acc;
-  }, {});
+  const result = properties.map((p) => ({
+    id: p.id,
+    title: p.title,
+    imageCount: p._count.images,
+    coverUrl: p.images[0]?.url ?? null,
+  }));
 
-  return NextResponse.json(grouped, { status: 200 });
+  return NextResponse.json(result);
 }
