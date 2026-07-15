@@ -27,12 +27,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Type de fichier non autorisé (jpg, png, webp)" }, { status: 400 });
     }
 
-    // Validate file size (max 5MB)
-    if (file.size > 5 * 1024 * 1024) {
-      return NextResponse.json({ error: "Fichier trop lourd (max 5MB)" }, { status: 400 });
-    }
-
-    const ext = file.name.split(".").pop();
+const ext = file.name.split(".").pop();
     const fileName = `${propertyId}/${Date.now()}.${ext}`;
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);

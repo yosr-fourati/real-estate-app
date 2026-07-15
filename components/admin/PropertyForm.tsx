@@ -170,7 +170,7 @@ export default function PropertyForm({ property }: Props) {
             />
           </label>
         </div>
-        <p className="text-xs text-gray-400">Formats: JPG, PNG, WebP — Max 5MB par image</p>
+        <p className="text-xs text-gray-400">Formats: JPG, PNG, WebP</p>
       </div>
 
       {/* Main info */}
