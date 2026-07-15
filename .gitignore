@@ -28,6 +28,10 @@ prisma/*.db
 *.tsbuildinfo
 next-env.d.ts
 
+# Claude Code internals
+.claude/
+.claire/
+
 # logs & misc
 *.log
 .DS_Store
