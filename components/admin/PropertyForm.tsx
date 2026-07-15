@@ -40,7 +40,7 @@ export default function PropertyForm({ property }: Props) {
       ? {
           title: property.title,
           description: property.description,
-          price: property.price,
+          price: property.price || (undefined as unknown as number),
           city: property.city,
           governorate: property.governorate,
           type: property.type,

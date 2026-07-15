@@ -5,7 +5,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatPrice(price: number, listingType: "SALE" | "RENT" = "SALE"): string {
+export function formatPrice(price: number | null | undefined, listingType: "SALE" | "RENT" = "SALE"): string {
+  if (!price) return "Prix sur demande";
   const formatted = new Intl.NumberFormat("fr-TN", {
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
