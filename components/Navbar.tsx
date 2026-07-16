@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Instagram } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -117,6 +117,28 @@ export default function Navbar() {
               >
                 <Phone className="w-4 h-4" />
                 Nous contacter
+              </a>
+            </div>
+            <div className="px-4 pt-1 flex gap-3">
+              <a
+                href="https://www.facebook.com/indeedimmobilier/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 border border-gray-200 text-gray-700 py-2 rounded-full text-sm font-medium hover:bg-gray-50"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                </svg>
+                Facebook
+              </a>
+              <a
+                href="https://www.instagram.com/indeed_immobilier/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 border border-gray-200 text-gray-700 py-2 rounded-full text-sm font-medium hover:bg-gray-50"
+              >
+                <Instagram className="w-4 h-4" />
+                Instagram
               </a>
             </div>
           </div>
