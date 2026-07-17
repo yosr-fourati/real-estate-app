@@ -117,8 +117,8 @@ export default function ChatWidget() {
           style={{
             right: "0.75rem",
             bottom: "0.75rem",
-            width: "min(340px, calc(100vw - 1.5rem))",
-            height: "min(480px, calc(100dvh - 80px))",
+            width: "min(300px, calc(100vw - 1.5rem))",
+            height: "min(380px, calc(100dvh - 100px))",
           }}>
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 bg-[#002B5B] text-white flex-shrink-0">
