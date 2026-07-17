@@ -56,6 +56,7 @@ export const DELEGATIONS: Record<string, string[]> = {
     "El Manar 3",
     "Lafayette",
     "Montplaisir",
+    "Laouina",
   ],
   Ariana: [
     "Ariana Ville",
