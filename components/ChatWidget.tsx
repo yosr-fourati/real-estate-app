@@ -33,7 +33,7 @@ export default function ChatWidget() {
         {
           role: "assistant",
           content:
-            "Bonjour ! Je suis l'assistant Indeed Immobilier. Comment puis-je vous aider ? مرحبا! كيفاش نعاونك؟",
+            "Bonjour ! Je suis l'assistant Indeed Immobilier. Comment puis-je vous aider ? / Hello! How can I help you? / مرحبا! كيف يمكنني مساعدتك؟",
         },
       ]);
     }
