@@ -80,6 +80,7 @@ export const DELEGATIONS: Record<string, string[]> = {
     "Chotrana 3",
     "Aïn Zaghouan",
     "Centre Urbain Nord",
+    "Cité El Ghazala",
   ],
   "Ben Arous": [
     "Ben Arous",
