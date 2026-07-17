@@ -4,6 +4,27 @@ import { prisma } from "@/lib/prisma";
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+// In-memory rate limiter: max 15 requests per IP per hour
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const MAX_REQUESTS_PER_HOUR = 15;
+const MAX_MESSAGES_PER_CONVERSATION = 20;
+const MAX_INPUT_CHARS = 500;
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const entry = rateLimitMap.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + 60 * 60 * 1000 });
+    return true;
+  }
+
+  if (entry.count >= MAX_REQUESTS_PER_HOUR) return false;
+
+  entry.count++;
+  return true;
+}
+
 const TYPE_LABELS: Record<string, string> = {
   APARTMENT: "Appartement",
   HOUSE: "Maison",
@@ -76,17 +97,44 @@ INSTRUCTIONS :
 
 export async function POST(req: NextRequest) {
   try {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
+
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: "Trop de messages. Réessayez dans une heure." },
+        { status: 429 }
+      );
+    }
+
     const { messages } = await req.json();
 
     if (!Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: "Messages requis" }, { status: 400 });
     }
 
+    // Cap conversation length
+    if (messages.length > MAX_MESSAGES_PER_CONVERSATION) {
+      return NextResponse.json(
+        { error: "Conversation trop longue. Rechargez la page pour recommencer." },
+        { status: 400 }
+      );
+    }
+
+    // Cap last user message length
+    const lastMsg = messages[messages.length - 1];
+    if (typeof lastMsg?.content === "string" && lastMsg.content.length > MAX_INPUT_CHARS) {
+      return NextResponse.json(
+        { error: "Message trop long (max 500 caractères)." },
+        { status: 400 }
+      );
+    }
+
     const systemPrompt = await buildSystemPrompt();
 
     const response = await client.messages.create({
       model: "claude-haiku-4-5",
-      max_tokens: 1024,
+      max_tokens: 512,
       system: systemPrompt,
       messages: messages.map((m: { role: string; content: string }) => ({
         role: m.role as "user" | "assistant",
