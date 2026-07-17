@@ -43,7 +43,19 @@ export default function Footer() {
             <li className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-blue-300 flex-shrink-0" />
               <a href={`tel:+${whatsapp}`} className="hover:text-white transition-colors">
-                +{whatsapp}
+                +216 26 454 266
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-blue-300 flex-shrink-0" />
+              <a href="tel:+21629454266" className="hover:text-white transition-colors">
+                +216 29 454 266
+              </a>
+            </li>
+            <li className="flex items-center gap-2">
+              <Phone className="w-4 h-4 text-blue-300 flex-shrink-0" />
+              <a href="tel:+21624716440" className="hover:text-white transition-colors">
+                +216 24 716 440
               </a>
             </li>
             <li className="flex items-center gap-2">
