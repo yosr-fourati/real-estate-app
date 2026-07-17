@@ -9,6 +9,9 @@ type PropertyWithImage = Property & { images: PropertyImage[] };
 
 export default function PropertyCard({ property }: { property: PropertyWithImage }) {
   const cover = property.images[0]?.url;
+  const isNew =
+    property.createdAt &&
+    Date.now() - new Date(property.createdAt).getTime() < 14 * 24 * 60 * 60 * 1000;
 
   return (
     <Link href={`/properties/${property.id}`} className="group block">
@@ -36,6 +39,13 @@ export default function PropertyCard({ property }: { property: PropertyWithImage
               {PROPERTY_TYPE_LABELS[property.type]}
             </Badge>
           </div>
+          {isNew && (
+            <div className="absolute top-3 right-3">
+              <Badge className="bg-emerald-500 text-white text-xs px-2 py-0.5 shadow">
+                Nouveau
+              </Badge>
+            </div>
+          )}
         </div>
 
         {/* Content */}
