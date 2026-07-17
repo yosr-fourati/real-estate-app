@@ -9,6 +9,27 @@ interface Message {
   content: string;
 }
 
+function renderContent(text: string) {
+  let html = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  // **bold**
+  html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+
+  // clickable URLs
+  html = html.replace(
+    /(https?:\/\/[^\s<]+)/g,
+    '<a href="$1" target="_blank" rel="noopener noreferrer" style="color:#2563eb;text-decoration:underline;word-break:break-all;">$1</a>'
+  );
+
+  // newlines
+  html = html.replace(/\n/g, "<br/>");
+
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
 export default function ChatWidget() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -121,13 +142,13 @@ export default function ChatWidget() {
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm leading-relaxed whitespace-pre-wrap ${
+                  className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm leading-relaxed ${
                     msg.role === "user"
                       ? "bg-[#002B5B] text-white rounded-br-sm"
                       : "bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-sm"
                   }`}
                 >
-                  {msg.content}
+                  {msg.role === "assistant" ? renderContent(msg.content) : msg.content}
                 </div>
               </div>
             ))}
