@@ -69,7 +69,8 @@ async function buildSystemPrompt() {
         .filter(Boolean)
         .join(", ");
       const location = [p.city, p.governorate].filter(Boolean).join(", ");
-      return `- [${mode}] ${type} — ${p.title} | ${location} | ${price}${details ? ` | ${details}` : ""}`;
+      const url = `https://indeedimmobilier.com/properties/${p.id}`;
+      return `- [${mode}] ${type} — ${p.title} | ${location} | ${price}${details ? ` | ${details}` : ""} | Lien: ${url}`;
     })
     .join("\n");
 
